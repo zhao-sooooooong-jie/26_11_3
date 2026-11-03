@@ -45,17 +45,17 @@ public:
 #define LOG_DEBUG(...) do{\
     std::ostringstream oss;\
     oss << __VA_ARGS__;\
-    Logger::getInstance().log("DEBUG",__FILE__,__LINE__,oss.str());
+    Logger::getInstance().log("DEBUG",__FILE__,__LINE__,oss.str());\
 }while(0)
 
 #define LOG_INFO(...) do{\
     std::ostringstream oss;\
     oss << __VA_ARGS__;\
-    Logger::getInstance().log("INFO",__FILE__,__LINE__,oss.str());
+    Logger::getInstance().log("INFO",__FILE__,__LINE__,oss.str());\
 }while(0)
 
 #define LOG_ERROR(...) do{\
     std::ostringstream oss;\
     oss << __VA_ARGS__;\
-    Logger::getInstance().log("ERROR",__FILE__,__LINE__,oss.str());
+    Logger::getInstance().log("ERROR",__FILE__,__LINE__,oss.str());\
 }while(0)
