@@ -6,12 +6,26 @@
 #include <ctime>
 
 class Logger {
+     private:
+
+     std::ofstream fileStream;
+
+    Logger() {
+        fileStream.open("app.log", std::ios::app);
+    }//私有化构造函数
+
+    ~Logger() {
+        if (fileStream.is_open()) {
+            fileStream.close();
+        }
+    }//私有化析构函数
+
 public:
     static Logger& getInstance() {
         static Logger instance;
         return instance;
     }
-    
+    private:
     void log(const char* level,const char*file,int line,const std::string&msg)
     {
         //1.获取时间
@@ -25,10 +39,9 @@ public:
         oss << "[" << timeStr << "] [" << level << "] [" << file << ":" << line << "] " << msg;
 
         //3.写入日志文件
-        std::ofstream fileStream("app.log", std::ios::app);
         if(fileStream.is_open()){
             fileStream << oss.str() << std::endl;
-            fileStream.close();
+
         } else {
             std::cerr << "日志写入失败！" << std::endl;
         }
@@ -37,8 +50,6 @@ public:
         std::cout << oss.str() << std::endl;
     }
     
-    private:
-    Logger() {}//私有化构造函数
 };
 
 //宏定义，方便使用
